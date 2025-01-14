@@ -2,9 +2,8 @@ package com.josemeurer.springBoot_mongoDB.controllers;
 
 import com.josemeurer.springBoot_mongoDB.dtos.UserDTO;
 import com.josemeurer.springBoot_mongoDB.dtos.UserInsertDTO;
+import com.josemeurer.springBoot_mongoDB.dtos.UserUpdateDTO;
 import com.josemeurer.springBoot_mongoDB.services.UserService;
-import jakarta.servlet.http.HttpServletRequest;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -18,9 +17,6 @@ import java.util.List;
 public class UserController {
 
     private final UserService userService;
-
-    @Autowired
-    private HttpServletRequest req;
 
     public UserController(UserService userService) {
         this.userService = userService;
@@ -46,8 +42,18 @@ public class UserController {
                 .path("/{id}")
                 .buildAndExpand(userDto.getId())
                 .toUri();
-
-//        URI uri1 = new URI(req.getRequestURL().toString() + "/" + userDto.getId());
         return ResponseEntity.created(uri).build();
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable String id) {
+        userService.delete(id);
+        return ResponseEntity.noContent().build();
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Void> update(@PathVariable String id, @RequestBody UserUpdateDTO dto) {
+        UserDTO userDto = userService.update(id, dto);
+        return ResponseEntity.noContent().build();
     }
 }

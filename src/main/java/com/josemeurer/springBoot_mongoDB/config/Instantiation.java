@@ -2,7 +2,6 @@ package com.josemeurer.springBoot_mongoDB.config;
 
 import com.josemeurer.springBoot_mongoDB.entities.User;
 import com.josemeurer.springBoot_mongoDB.repositories.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 
