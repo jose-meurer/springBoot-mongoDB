@@ -19,14 +19,17 @@ public class Post implements Serializable {
     private String title;
     private String body;
 
+    private AuthorPost author;
+
     public Post() {
     }
 
-    public Post(String id, Instant date, String title, String body) {
+    public Post(String id, Instant date, String title, String body, AuthorPost author) {
         this.id = id;
         this.date = date;
         this.title = title;
         this.body = body;
+        this.author = author;
     }
 
     public String getId() {
@@ -59,6 +62,14 @@ public class Post implements Serializable {
 
     public void setBody(String body) {
         this.body = body;
+    }
+
+    public AuthorPost getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(AuthorPost author) {
+        this.author = author;
     }
 
     @Override
