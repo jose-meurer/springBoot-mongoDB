@@ -1,5 +1,6 @@
 package com.josemeurer.springBoot_mongoDB.services;
 
+import com.josemeurer.springBoot_mongoDB.dtos.PostDTO;
 import com.josemeurer.springBoot_mongoDB.dtos.UserDTO;
 import com.josemeurer.springBoot_mongoDB.dtos.UserInsertDTO;
 import com.josemeurer.springBoot_mongoDB.dtos.UserUpdateDTO;
@@ -55,5 +56,11 @@ public class UserService {
         User user = new User(id, dto.getName(), dto.getEmail());
         user = userRepository.save(user);
         return new UserDTO(user);
+    }
+
+    public List<PostDTO> findPosts(String id) {
+        Optional<User> optionalUser = userRepository.findById(id);
+        User user = optionalUser.orElseThrow(() -> new ObjectNotFoundException("Object not found"));
+        return user.getPosts().stream().map(PostDTO::new).toList();
     }
 }

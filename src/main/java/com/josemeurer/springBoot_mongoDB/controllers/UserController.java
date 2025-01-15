@@ -1,5 +1,6 @@
 package com.josemeurer.springBoot_mongoDB.controllers;
 
+import com.josemeurer.springBoot_mongoDB.dtos.PostDTO;
 import com.josemeurer.springBoot_mongoDB.dtos.UserDTO;
 import com.josemeurer.springBoot_mongoDB.dtos.UserInsertDTO;
 import com.josemeurer.springBoot_mongoDB.dtos.UserUpdateDTO;
@@ -55,5 +56,11 @@ public class UserController {
     public ResponseEntity<Void> update(@PathVariable String id, @RequestBody UserUpdateDTO dto) {
         UserDTO userDto = userService.update(id, dto);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/{id}/posts")
+    public ResponseEntity<List<PostDTO>> findPosts(@PathVariable String id) {
+        List<PostDTO> list = userService.findPosts(id);
+        return ResponseEntity.ok().body(list);
     }
 }
