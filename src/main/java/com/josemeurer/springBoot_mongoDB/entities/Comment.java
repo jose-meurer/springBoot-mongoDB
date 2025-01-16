@@ -1,39 +1,30 @@
 package com.josemeurer.springBoot_mongoDB.entities;
 
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.io.Serial;
 import java.io.Serializable;
 import java.time.Instant;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
-@Document(collection = "posts")
-public class Post implements Serializable {
+@Document(collection = "comments")
+public class Comment implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
 
     @Id
     private String id;
     private Instant date;
-    private String title;
     private String body;
-
     private UserAuthor author;
 
-    @DBRef(lazy = true)
-    private List<Comment> comments = new ArrayList<>();
-
-    public Post() {
+    public Comment() {
     }
 
-    public Post(String id, Instant date, String title, String body, UserAuthor author) {
+    public Comment(String id, Instant date, String body, UserAuthor author) {
         this.id = id;
         this.date = date;
-        this.title = title;
         this.body = body;
         this.author = author;
     }
@@ -54,14 +45,6 @@ public class Post implements Serializable {
         this.date = date;
     }
 
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
     public String getBody() {
         return body;
     }
@@ -78,16 +61,12 @@ public class Post implements Serializable {
         this.author = author;
     }
 
-    public List<Comment> getComments() {
-        return comments;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
 
-        Post post = (Post) o;
-        return Objects.equals(id, post.id);
+        Comment comment = (Comment) o;
+        return Objects.equals(id, comment.id);
     }
 
     @Override

@@ -1,6 +1,6 @@
 package com.josemeurer.springBoot_mongoDB.dtos;
 
-import com.josemeurer.springBoot_mongoDB.entities.AuthorPost;
+import com.josemeurer.springBoot_mongoDB.entities.UserAuthor;
 import com.josemeurer.springBoot_mongoDB.entities.Post;
 
 import java.io.Serial;
@@ -15,7 +15,7 @@ public class PostDTO implements Serializable {
     private Instant date;
     private String title;
     private String body;
-    private AuthorPost author;
+    private UserAuthor author;
 
     public PostDTO() {
     }
@@ -28,7 +28,7 @@ public class PostDTO implements Serializable {
         this.author = obj.getAuthor();
     }
 
-    public PostDTO(String id, Instant date, String title, String body, AuthorPost author) {
+    public PostDTO(String id, Instant date, String title, String body, UserAuthor author) {
         this.id = id;
         this.date = date;
         this.title = title;
@@ -68,11 +68,11 @@ public class PostDTO implements Serializable {
         this.body = body;
     }
 
-    public AuthorPost getAuthor() {
+    public UserAuthor getAuthor() {
         return author;
     }
 
-    public void setAuthor(AuthorPost author) {
+    public void setAuthor(UserAuthor author) {
         this.author = author;
     }
 }
