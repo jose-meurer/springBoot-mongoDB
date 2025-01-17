@@ -1,39 +1,41 @@
-package com.josemeurer.springBoot_mongoDB.entities;
+package com.josemeurer.springBoot_mongoDB.dtos;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+import com.josemeurer.springBoot_mongoDB.entities.Post;
+import com.josemeurer.springBoot_mongoDB.entities.UserAuthor;
 
-import java.io.Serial;
-import java.io.Serializable;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
-@Document(collection = "posts")
-public class Post implements Serializable {
-    @Serial
-    private static final long serialVersionUID = 1L;
+public class PostWithCommentDTO {
 
-    @Id
     private String id;
     private Instant date;
     private String title;
     private String body;
-
     private UserAuthor author;
 
-    private List<Comment> comments = new ArrayList<>();
+    List<CommentDTO> commentDTOS = new ArrayList<>();
 
-    public Post() {
+    public PostWithCommentDTO() {
     }
 
-    public Post(String id, Instant date, String title, String body, UserAuthor author) {
+    public PostWithCommentDTO(Post obj) {
+        this.id = obj.getId();
+        this.date = obj.getDate();
+        this.title = obj.getTitle();
+        this.body = obj.getBody();
+        this.author = obj.getAuthor();
+        this.commentDTOS = obj.getComments().stream().map(CommentDTO::new).toList();
+    }
+
+    public PostWithCommentDTO(String id, Instant date, String title, String body, UserAuthor author, List<CommentDTO> commentDTOS) {
         this.id = id;
         this.date = date;
         this.title = title;
         this.body = body;
         this.author = author;
+        this.commentDTOS = commentDTOS;
     }
 
     public String getId() {
@@ -76,20 +78,11 @@ public class Post implements Serializable {
         this.author = author;
     }
 
-    public List<Comment> getComments() {
-        return comments;
+    public List<CommentDTO> getCommentDTOS() {
+        return commentDTOS;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Post post = (Post) o;
-        return Objects.equals(id, post.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hashCode(id);
+    public void setCommentDTOS(List<CommentDTO> commentDTOS) {
+        this.commentDTOS = commentDTOS;
     }
 }

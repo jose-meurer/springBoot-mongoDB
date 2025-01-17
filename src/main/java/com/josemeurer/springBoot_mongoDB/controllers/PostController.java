@@ -1,5 +1,7 @@
 package com.josemeurer.springBoot_mongoDB.controllers;
 
+import com.josemeurer.springBoot_mongoDB.controllers.util.Url;
+import com.josemeurer.springBoot_mongoDB.dtos.PostWithCommentDTO;
 import com.josemeurer.springBoot_mongoDB.dtos.PostDTO;
 import com.josemeurer.springBoot_mongoDB.dtos.PostInsertDTO;
 import com.josemeurer.springBoot_mongoDB.dtos.PostUpdateDTO;
@@ -54,5 +56,12 @@ public class PostController {
     public ResponseEntity<Void> update(@PathVariable String id, @RequestBody PostUpdateDTO dto) {
         PostDTO postDto = postService.update(id, dto);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/searchtext")
+    public ResponseEntity<List<PostWithCommentDTO>> searchText(@RequestParam(value = "text", defaultValue = "") String text ) {
+        text = Url.decodeParam(text);
+        List<PostWithCommentDTO> list = postService.searchText(text);
+        return ResponseEntity.ok().body(list);
     }
 }

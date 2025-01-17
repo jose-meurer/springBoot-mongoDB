@@ -1,14 +1,16 @@
 package com.josemeurer.springBoot_mongoDB.services;
 
+
+import com.josemeurer.springBoot_mongoDB.dtos.PostWithCommentDTO;
 import com.josemeurer.springBoot_mongoDB.dtos.PostDTO;
 import com.josemeurer.springBoot_mongoDB.dtos.PostInsertDTO;
 import com.josemeurer.springBoot_mongoDB.dtos.PostUpdateDTO;
 import com.josemeurer.springBoot_mongoDB.entities.Post;
 import com.josemeurer.springBoot_mongoDB.entities.User;
 import com.josemeurer.springBoot_mongoDB.entities.UserAuthor;
-import com.josemeurer.springBoot_mongoDB.services.exceptions.ObjectNotFoundException;
 import com.josemeurer.springBoot_mongoDB.repositories.PostRepository;
 import com.josemeurer.springBoot_mongoDB.repositories.UserRepository;
+import com.josemeurer.springBoot_mongoDB.services.exceptions.ObjectNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,6 +23,7 @@ public class PostService {
 
     private final PostRepository postRepository;
     private final UserRepository userRepository;
+
 
     public PostService(PostRepository postRepository, UserRepository userRepository) {
         this.postRepository = postRepository;
@@ -64,6 +67,11 @@ public class PostService {
     public List<PostDTO> findPostsByUser (String id) {
         List<Post> list = postRepository.findByAuthorId(id);
         return list.stream().map(PostDTO::new).toList();
+    }
+
+    public List<PostWithCommentDTO> searchText (String text) {
+        List<Post> list = postRepository.searchText(text);
+        return list.stream().map(PostWithCommentDTO::new).toList();
     }
 
     private User findUserById(String userId) {
