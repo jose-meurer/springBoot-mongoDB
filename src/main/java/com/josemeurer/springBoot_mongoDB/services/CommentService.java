@@ -3,7 +3,7 @@ package com.josemeurer.springBoot_mongoDB.services;
 import com.josemeurer.springBoot_mongoDB.dtos.CommentDTO;
 import com.josemeurer.springBoot_mongoDB.entities.Comment;
 import com.josemeurer.springBoot_mongoDB.entities.Post;
-import com.josemeurer.springBoot_mongoDB.exceptions.ObjectNotFoundException;
+import com.josemeurer.springBoot_mongoDB.services.exceptions.ObjectNotFoundException;
 import com.josemeurer.springBoot_mongoDB.repositories.CommentRepository;
 import com.josemeurer.springBoot_mongoDB.repositories.PostRepository;
 import org.springframework.stereotype.Service;

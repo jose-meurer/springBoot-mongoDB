@@ -4,7 +4,7 @@ import com.josemeurer.springBoot_mongoDB.dtos.UserDTO;
 import com.josemeurer.springBoot_mongoDB.dtos.UserInsertDTO;
 import com.josemeurer.springBoot_mongoDB.dtos.UserUpdateDTO;
 import com.josemeurer.springBoot_mongoDB.entities.User;
-import com.josemeurer.springBoot_mongoDB.exceptions.ObjectNotFoundException;
+import com.josemeurer.springBoot_mongoDB.services.exceptions.ObjectNotFoundException;
 import com.josemeurer.springBoot_mongoDB.repositories.UserRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

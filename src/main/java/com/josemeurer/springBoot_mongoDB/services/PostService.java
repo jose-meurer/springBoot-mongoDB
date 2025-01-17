@@ -6,7 +6,7 @@ import com.josemeurer.springBoot_mongoDB.dtos.PostUpdateDTO;
 import com.josemeurer.springBoot_mongoDB.entities.Post;
 import com.josemeurer.springBoot_mongoDB.entities.User;
 import com.josemeurer.springBoot_mongoDB.entities.UserAuthor;
-import com.josemeurer.springBoot_mongoDB.exceptions.ObjectNotFoundException;
+import com.josemeurer.springBoot_mongoDB.services.exceptions.ObjectNotFoundException;
 import com.josemeurer.springBoot_mongoDB.repositories.PostRepository;
 import com.josemeurer.springBoot_mongoDB.repositories.UserRepository;
 import org.springframework.stereotype.Service;

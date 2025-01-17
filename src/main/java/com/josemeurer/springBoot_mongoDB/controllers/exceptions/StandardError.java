@@ -1,4 +1,4 @@
-package com.josemeurer.springBoot_mongoDB.exceptions;
+package com.josemeurer.springBoot_mongoDB.controllers.exceptions;
 
 import java.io.Serial;
 import java.io.Serializable;

@@ -1,4 +1,4 @@
-package com.josemeurer.springBoot_mongoDB.exceptions;
+package com.josemeurer.springBoot_mongoDB.services.exceptions;
 
 public class ObjectNotFoundException extends RuntimeException{
 

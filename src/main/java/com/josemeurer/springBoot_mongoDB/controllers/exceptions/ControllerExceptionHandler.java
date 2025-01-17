@@ -1,5 +1,6 @@
-package com.josemeurer.springBoot_mongoDB.exceptions;
+package com.josemeurer.springBoot_mongoDB.controllers.exceptions;
 
+import com.josemeurer.springBoot_mongoDB.services.exceptions.ObjectNotFoundException;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
