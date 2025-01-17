@@ -3,17 +3,20 @@ package com.josemeurer.springBoot_mongoDB.dtos;
 import java.io.Serial;
 import java.io.Serializable;
 
-public class CommentUpdateDTO implements Serializable {
+public class CommentInsertDTO implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
 
-    private String body;
 
-    public CommentUpdateDTO() {
+    private String body;
+    private String userId;
+
+    public CommentInsertDTO() {
     }
 
-    public CommentUpdateDTO(String body) {
+    public CommentInsertDTO(String body, String userId) {
         this.body = body;
+        this.userId = userId;
     }
 
     public String getBody() {
@@ -22,5 +25,13 @@ public class CommentUpdateDTO implements Serializable {
 
     public void setBody(String body) {
         this.body = body;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 }
