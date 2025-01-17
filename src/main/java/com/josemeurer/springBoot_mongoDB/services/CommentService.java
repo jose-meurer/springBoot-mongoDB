@@ -9,6 +9,7 @@ import com.josemeurer.springBoot_mongoDB.repositories.PostRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CommentService {
@@ -19,6 +20,17 @@ public class CommentService {
     public CommentService(CommentRepository commentRepository, PostRepository postRepository) {
         this.commentRepository = commentRepository;
         this.postRepository = postRepository;
+    }
+
+    public CommentDTO findById(String id) {
+        Optional<Comment> optionalComment = commentRepository.findById(id);
+        Comment comment =optionalComment.orElseThrow(() -> new ObjectNotFoundException("Comment not found"));
+        return new CommentDTO(comment);
+    }
+
+    public List<CommentDTO> findAll() {
+        List<Comment> list = commentRepository.findAll();
+        return list.stream().map(CommentDTO::new).toList();
     }
 
     public List<CommentDTO> findCommentsByPost(String id) {
