@@ -1,11 +1,12 @@
 package com.josemeurer.springBoot_mongoDB.services;
 
 import com.josemeurer.springBoot_mongoDB.dtos.CommentDTO;
+import com.josemeurer.springBoot_mongoDB.dtos.CommentUpdateDTO;
 import com.josemeurer.springBoot_mongoDB.entities.Comment;
 import com.josemeurer.springBoot_mongoDB.entities.Post;
-import com.josemeurer.springBoot_mongoDB.services.exceptions.ObjectNotFoundException;
 import com.josemeurer.springBoot_mongoDB.repositories.CommentRepository;
 import com.josemeurer.springBoot_mongoDB.repositories.PostRepository;
+import com.josemeurer.springBoot_mongoDB.services.exceptions.ObjectNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -41,5 +42,24 @@ public class CommentService {
 
     private Post findPostById(String postId) {
         return postRepository.findById(postId).orElseThrow(() -> new ObjectNotFoundException("Post not found"));
+    }
+
+    public void delete(String id) {
+        if(!commentRepository.existsById(id)) {
+            throw new ObjectNotFoundException("Comment not found");
+        }
+        commentRepository.deleteById(id);
+    }
+
+    public CommentDTO update(String id, CommentUpdateDTO dto) {
+        Comment comment = updateDataComment(id, dto);
+        return new CommentDTO(comment);
+    }
+
+    private Comment updateDataComment(String id, CommentUpdateDTO dto) {
+        Comment comment = commentRepository.findById(id).orElseThrow(() -> new ObjectNotFoundException("Object not found"));
+        comment.setBody(dto.getBody());
+        commentRepository.save(comment);
+        return comment;
     }
 }
