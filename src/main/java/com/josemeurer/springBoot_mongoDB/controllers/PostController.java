@@ -2,6 +2,7 @@ package com.josemeurer.springBoot_mongoDB.controllers;
 
 import com.josemeurer.springBoot_mongoDB.dtos.PostDTO;
 import com.josemeurer.springBoot_mongoDB.dtos.PostInsertDTO;
+import com.josemeurer.springBoot_mongoDB.dtos.PostUpdateDTO;
 import com.josemeurer.springBoot_mongoDB.services.PostService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -43,4 +44,15 @@ public class PostController {
         return ResponseEntity.created(uri).build();
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete (@PathVariable String id) {
+        postService.delete(id);
+        return ResponseEntity.noContent().build();
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Void> update(@PathVariable String id, @RequestBody PostUpdateDTO dto) {
+        PostDTO postDto = postService.update(id, dto);
+        return ResponseEntity.noContent().build();
+    }
 }

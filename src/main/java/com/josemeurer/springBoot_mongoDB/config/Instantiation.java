@@ -4,9 +4,9 @@ import com.josemeurer.springBoot_mongoDB.entities.Comment;
 import com.josemeurer.springBoot_mongoDB.entities.Post;
 import com.josemeurer.springBoot_mongoDB.entities.User;
 import com.josemeurer.springBoot_mongoDB.entities.UserAuthor;
+import com.josemeurer.springBoot_mongoDB.repositories.CommentRepository;
 import com.josemeurer.springBoot_mongoDB.repositories.PostRepository;
 import com.josemeurer.springBoot_mongoDB.repositories.UserRepository;
-import com.josemeurer.springBoot_mongoDB.repositories.CommentRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 
